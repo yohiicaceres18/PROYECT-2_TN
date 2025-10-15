@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Día de la Madre - Ana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffd3e1 0%, #c9e4ff 50%, #ffe5f7 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card {
+            width: 500px;
+            height: 650px;
+            background: linear-gradient(145deg, #fff5f8, #ffffff);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: floatCard 3s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card-border {
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 3px;
+            background: linear-gradient(45deg, #ff9ed8, #a8d8ff, #ffc4e8, #d4a5ff);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            padding: 50px 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header {
+            text-align: center;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #ff69b4;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .name {
+            font-size: 3.5em;
+            color: #9370db;
+            font-weight: bold;
+            margin: 20px 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .message {
+            font-size: 1.3em;
+            color: #6b5b95;
+            text-align: center;
+            line-height: 1.6;
+            font-style: italic;
+            padding: 20px;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .butterfly {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: fly 8s ease-in-out infinite;
+        }
+
+        .butterfly1 {
+            top: 10%;
+            left: -50px;
+            animation-delay: 0s;
+        }
+
+        .butterfly2 {
+            top: 30%;
+            right: -50px;
+            animation-delay: 2s;
+        }
+
+        .butterfly3 {
+            top: 60%;
+            left: -50px;
+            animation-delay: 4s;
+        }
+
+        .butterfly4 {
+            top: 80%;
+            right: -50px;
+            animation-delay: 6s;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateX(0) translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(500px) translateY(-50px) rotate(360deg);
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(1000px) translateY(0px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .butterfly-body {
+            position: absolute;
+            width: 4px;
+            height: 30px;
+            background: #8b4789;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+        }
+
+        .wing {
+            position: absolute;
+            width: 20px;
+            height: 25px;
+            border-radius: 50% 50% 50% 0;
+            top: 50%;
+            transform-origin: bottom right;
+            animation: flap 0.5s ease-in-out infinite;
+        }
+
+        .wing-left-top {
+            background: linear-gradient(135deg, #ff9ed8, #ffc4e8);
+            left: -2px;
+            transform: translate(-100%, -80%) rotate(-20deg);
+        }
+
+        .wing-left-bottom {
+            background: linear-gradient(135deg, #ffc4e8, #ffb3e6);
+            left: -2px;
+            transform: translate(-100%, -20%) rotate(20deg);
+            height: 20px;
+        }
+
+        .wing-right-top {
+            background: linear-gradient(135deg, #a8d8ff, #d4a5ff);
+            right: -2px;
+            transform: translate(100%, -80%) rotate(20deg) scaleX(-1);
+            animation-delay: 0.25s;
+        }
+
+        .wing-right-bottom {
+            background: linear-gradient(135deg, #d4a5ff, #c9b3ff);
+            right: -2px;
+            transform: translate(100%, -20%) rotate(-20deg) scaleX(-1);
+            height: 20px;
+            animation-delay: 0.25s;
+        }
+
+        @keyframes flap {
+            0%, 100% { transform: translate(var(--tx, -100%), var(--ty, -80%)) rotate(var(--r, -20deg)) scaleX(var(--sx, 1)); }
+            50% { transform: translate(var(--tx, -100%), var(--ty, -80%)) rotate(var(--r, -20deg)) scaleX(var(--sx, 1)) scaleY(0.8); }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff69b4;
+            transform: rotate(45deg);
+            animation: floatHearts 6s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff69b4;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            left: -10px;
+        }
+
+        .heart::after {
+            top: -10px;
+        }
+
+        .heart1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .heart2 { top: 40%; right: 15%; animation-delay: 1.5s; }
+        .heart3 { top: 70%; left: 20%; animation-delay: 3s; }
+        .heart4 { top: 50%; right: 25%; animation-delay: 4.5s; }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) rotate(45deg) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: #ff69b4;
+            font-size: 1.1em;
+            animation: fadeIn 2.5s ease-out 1s both;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-border"></div>
+        <div class="card-content">
+            <div class="header">
+                <div class="title">¡Feliz Día de la Madre!</div>
+                <div class="name">Ana</div>
+            </div>
+
+            <div class="message">
+                "Madre: un corazón infinito, un abrazo eterno y un amor que florece cada día como las mariposas en primavera"
+            </div>
+
+            <div class="footer">
+                Con todo mi amor ❤️
+            </div>
+        </div>
+
+        <!-- Mariposas -->
+        <div class="butterfly butterfly1">
+            <div class="butterfly-body"></div>
+            <div class="wing wing-left-top" style="--tx: -100%; --ty: -80%; --r: -20deg; --sx: 1;"></div>
+            <div class="wing wing-left-bottom" style="--tx: -100%; --ty: -20%; --r: 20deg; --sx: 1;"></div>
+            <div class="wing wing-right-top" style="--tx: 100%; --ty: -80%; --r: 20deg; --sx: -1;"></div>
+            <div class="wing wing-right-bottom" style="--tx: 100%; --ty: -20%; --r: -20deg; --sx: -1;"></div>
+        </div>
+
+        <div class="butterfly butterfly2">
+            <div class="butterfly-body"></div>
+            <div class="wing wing-left-top" style="--tx: -100%; --ty: -80%; --r: -20deg; --sx: 1;"></div>
+            <div class="wing wing-left-bottom" style="--tx: -100%; --ty: -20%; --r: 20deg; --sx: 1;"></div>
+            <div class="wing wing-right-top" style="--tx: 100%; --ty: -80%; --r: 20deg; --sx: -1;"></div>
+            <div class="wing wing-right-bottom" style="--tx: 100%; --ty: -20%; --r: -20deg; --sx: -1;"></div>
+        </div>
+
+        <div class="butterfly butterfly3">
+            <div class="butterfly-body"></div>
+            <div class="wing wing-left-top" style="--tx: -100%; --ty: -80%; --r: -20deg; --sx: 1;"></div>
+            <div class="wing wing-left-bottom" style="--tx: -100%; --ty: -20%; --r: 20deg; --sx: 1;"></div>
+            <div class="wing wing-right-top" style="--tx: 100%; --ty: -80%; --r: 20deg; --sx: -1;"></div>
+            <div class="wing wing-right-bottom" style="--tx: 100%; --ty: -20%; --r: -20deg; --sx: -1;"></div>
+        </div>
+
+        <div class="butterfly butterfly4">
+            <div class="butterfly-body"></div>
+            <div class="wing wing-left-top" style="--tx: -100%; --ty: -80%; --r: -20deg; --sx: 1;"></div>
+            <div class="wing wing-left-bottom" style="--tx: -100%; --ty: -20%; --r: 20deg; --sx: 1;"></div>
+            <div class="wing wing-right-top" style="--tx: 100%; --ty: -80%; --r: 20deg; --sx: -1;"></div>
+            <div class="wing wing-right-bottom" style="--tx: 100%; --ty: -20%; --r: -20deg; --sx: -1;"></div>
+        </div>
+
+        <!-- Corazones flotantes -->
+        <div class="heart heart1"></div>
+        <div class="heart heart2"></div>
+        <div class="heart heart3"></div>
+        <div class="heart heart4"></div>
+    </div>
+</body>
+</html>
